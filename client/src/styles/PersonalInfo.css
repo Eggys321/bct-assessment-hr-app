@@ -1,0 +1,22 @@
+.personal-info-wrapper {
+  font-family: var(--ff-inter);
+}
+.personal-info-wrapper label {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(17, 16, 20, 1);
+}
+.personal-info-wrapper input , .personal-info-wrapper-select {
+  /* width: 526px; */
+  height: 46px;
+  border: 1px solid rgba(149, 149, 149, 1);
+}
+.personal-info-wrapper input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(135, 135, 137, 1);
+}
+
+
+@media (max-width: 768px) {
+}

@@ -1,0 +1,60 @@
+.is-active {
+  border-bottom: 3px solid rgb(73, 78, 229);
+  color: rgba(17, 16, 20, 1) !important;
+}
+.admin-employees-section h2 {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 28px;
+  color: rgba(22, 30, 84, 1);
+}
+.admin-employees-section h5 {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 20px;
+  color: rgba(64, 64, 64, 1);
+}
+
+.admin-employees-nav-link h6 {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(135, 135, 137, 1);
+}
+
+.new-employee-btn {
+  max-width: 172px;
+  max-height: 40px;
+  border-radius: 4px;
+  background-color: rgba(52, 57, 202, 1);
+  padding: 8px 16px 8px 16px;
+  border: none;
+}
+
+.new-employee-link {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(243, 242, 251, 1);
+}
+
+@media (max-width: 768px) {
+  .new-employee-btn {
+    max-width: 172px;
+    max-height: 40px;
+  }
+}
+
+@media (min-width: 766px) and (max-width: 768px) {
+  .new-employee-btn {
+    margin-right: 40px;
+  }
+}
+@media (min-width: 769px) and (max-width: 883px) {
+  .new-employee-btn {
+    margin-right: 10px;
+  }
+}
+@media (min-width: 883.1px) and (max-width: 884px) {
+ 
+}

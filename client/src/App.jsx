@@ -1,0 +1,98 @@
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Suspense } from "react";
+import { Loader } from "./utils/Loader";
+import {SignIn,
+  ForgotPassword,
+  ResetPassword,
+  AdminDashboard, AdminSummary,
+  Employees,
+  Settings,
+  Error,
+  AllEmployees,
+  NewEmployee,
+  PersonalInfo,
+  Salary,
+  Professional,
+  UserAccount,
+  EmployeeDashboard,
+  EmployeeTaskBoard,
+  EmployeeSettings,
+  EmployeeSummary} from "./index"
+
+import PrivateRoute from "./utils/PrivateRoute";
+import { Toaster } from "react-hot-toast";
+import RoleBasedRoutes from "./utils/RoleBasedRoutes";
+
+function App() {
+  return (
+    <>
+      <BrowserRouter>
+      <Suspense fallback={ <div className="d-flex justify-content-center align-items-center vh-100"><Loader/></div>  }>
+
+        <Routes>
+          <Route path="/" element={<Navigate to="/admin-dashboard" />} />
+          <Route path="auth/sign-in" element={<SignIn />} />
+          <Route path="auth/forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="auth/reset-password/:resetToken"
+            element={<ResetPassword />}
+          />
+          <Route
+            path="admin-dashboard"
+            element={
+              <PrivateRoute>
+                <RoleBasedRoutes requiredRole={["admin", "super-admin"]}>
+                  <AdminDashboard />
+                </RoleBasedRoutes>
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<AdminSummary />} />
+            {/* employees */}
+            <Route path="employees" element={<Employees />}>
+              <Route index element={<Navigate to="allemployees" />} />
+              <Route path="allemployees" element={<AllEmployees />} />
+             
+            </Route>
+            {/* ======= */}
+            <Route
+              path="/admin-dashboard/employees/personal-info"
+              element={<PersonalInfo />}
+            >
+              <Route index element={<Navigate to="/personal-info" />} />
+              <Route path="salary" element={<Salary />} />
+              <Route path="professional" element={<Professional />} />
+              <Route path="user-account" element={<UserAccount />} />
+            </Route>
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          {/* below for employee */}
+
+          <Route
+            path="/employee-dashboard"
+            element={
+              <PrivateRoute>
+                <RoleBasedRoutes
+                  requiredRole={["employee", "admin", "super-admin"]}
+                >
+                  <EmployeeDashboard />
+                </RoleBasedRoutes>
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<EmployeeSummary/>}/>
+            <Route path="taskboard" element={<EmployeeTaskBoard />} />
+            <Route path="settings" element={<EmployeeSettings />} />
+          </Route>
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Suspense>
+        <Toaster />
+      </BrowserRouter>
+    </>
+  );
+}
+
+export default App;

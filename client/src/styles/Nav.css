@@ -1,0 +1,53 @@
+.nav-wrapper .is-active-link {
+  border-bottom: 3px solid rgba(52, 57, 202, 1);
+  color: rgba(17, 16, 20, 1) !important;
+}
+.nav-container h2 {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+}
+.nav-container h2 {
+  font-size: 28px;
+  color: rgba(22, 30, 84, 1);
+}
+.nav-container p {
+  font-size: 20px;
+  color: rgba(64, 64, 64, 1);
+}
+
+.nav-wrapper a {
+  font-size: 16px;
+  color: rgba(135, 135, 137, 1);
+}
+
+@media (max-width: 768px) {
+  .nav-wrapper a {
+    /* font-size: 16px; */
+  }
+}
+
+@media (min-width: 766px) and (max-width: 768px) {
+  .nav-wrapper {
+    width: 88%;
+  }
+  .nav-wrapper a {
+    /* font-size: 11px; */
+    width: 88%;
+  }
+}
+@media (min-width: 769px) and (max-width: 883px) {
+  .nav-wrapper {
+    width: 94%;
+  }
+  .nav-wrapper a {
+    /* font-size: 11px; */
+  }
+}
+@media (min-width: 883.1px) and (max-width: 884px) {
+  .nav-wrapper {
+    width: 100%;
+  }
+  .nav-wrapper a {
+    /* font-size: 12px; */
+  }
+}

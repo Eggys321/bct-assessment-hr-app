@@ -1,0 +1,77 @@
+.settings-section-1 h2 {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 28px;
+  color: rgba(22, 30, 84, 1);
+}
+
+.settings-section-1 h5 {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 20px;
+  color: rgba(64, 64, 64, 1);
+}
+
+.settings-section-2{
+    border: 1px solid rgba(235, 238, 241, 1);
+    border-radius: 10px;
+    padding: 38px 34px 38px 34px;
+
+}
+.settings-section-2-h2{
+    font-family: var(--ff-inter);
+    font-weight: 500;
+    font-size: 24px;
+    color: rgba(14, 10, 45, 1);
+    
+}
+.settings-section-2-h5{
+    font-family: var(--ff-inter);
+    font-weight: 500;
+    font-size: 18px;
+    color: rgba(116, 116, 116, 1);
+    
+}
+
+.settings-form-label{
+    font-family: var(--ff-inter);
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(17, 16, 20, 1);
+    
+}
+.section-form-input{
+    border: 1px solid rgba(149, 149, 149, 1);
+    height: 46px;
+}
+
+.settings-wrapper p{
+    font-family: var(--ff-inter);
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(135, 135, 137, 1);
+    padding-top: 8px;
+    
+}
+.settings-wrapper img{
+    width: 120px;
+    height: 120px;
+    
+}
+.settings-wrapper a{
+    font-family: var(--ff-inter);
+    font-weight: 500;
+    font-size: 12px;
+    color: rgba(52, 57, 202, 1);
+}
+
+
+
+@media(max-width:765px){
+
+    .settings-section-2{
+        border: 2px solid rgba(235, 238, 241, 1);
+        padding: 28px 20px 28px 20px;
+    
+    }
+}

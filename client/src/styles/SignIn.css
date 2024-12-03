@@ -1,0 +1,99 @@
+@font-face {
+    font-family: neurial-grotesk;
+    src: url("../fonts/Fontspring-DEMO-neurialgrotesk-regular.otf");
+}
+
+.main-auth {
+  background-image: url("../assets/auth-wallpaper.png");
+  background-size: 100% 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.sign-in-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 41px;
+  width: 640px;
+  height: 600.92px;
+  /* height: 525.92px; */
+  background-color: #fff;
+  padding: 32px 48px 32px 48px;
+  border-radius: 8px;
+}
+
+.sign-in-inner img {
+  max-width: 45.3px;
+  max-height: 43.92px;
+  border-radius: 10.98px;
+}
+
+.sign-in-inner h1 {
+  font-family: var(--ff-bricolage-grotesque);
+  font-size: 27.03px;
+  font-weight: 700;
+}
+.sign-in-inner h3 {
+  font-family: var(--ff-inter);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.input {
+  background-color: #f3f3f3;
+}
+
+.label{
+    font-family: var(--ff-inter);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.forgot-password{
+    font-family: var(--ff-inter);
+    color: #3439CA;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.sign-in-btn{
+    font-family: neurial-grotesk;
+    background-color: var(--auth-bgrc);
+    padding: 12px, 36px, 12px, 36px;
+    width: 544px;
+    height: 48px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+
+
+@media (max-width: 767px) {
+    .main-auth {
+      background-image: none;
+    }
+  
+    .sign-in-inner  {
+      border: 2px solid var(--auth-bgrc);
+      width: 96%;
+      height: 600.92px;
+      padding: 32px 20px 32px 20px;
+      border-radius: 8px;
+      margin: 15px auto;
+    }
+
+    .sign-in-btn{
+        font-family: neurial-grotesk;
+        background-color: var(--auth-bgrc);
+        padding: 12px, 36px, 12px, 36px;
+        width: 100%;
+        height: 48px;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 16px;
+    }
+  }
+  
