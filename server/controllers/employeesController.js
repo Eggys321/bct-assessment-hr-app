@@ -56,7 +56,7 @@ export const employees = async(req,res)=>{
 
 // search employees
 export const searchUsers = async (req, res) => {
-    const { query } = req.query; // Get the search query from query parameters
+    const { query } = req.query;
   
     try {
       const users = await USER.find({
@@ -67,13 +67,10 @@ export const searchUsers = async (req, res) => {
         ]
       });
   
-      // If no users are found
       if (!users || users.length === 0) {
         return res.status(404).json({ success: false, errMsg: "No users found." });
       }
-  
-      // Return the list of found users
-      res.status(200).json({
+        res.status(200).json({
         success: true,
         count: users.length,
         users,

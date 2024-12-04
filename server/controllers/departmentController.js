@@ -81,7 +81,6 @@ export const getSingleDepartment = async (req, res) => {
         .json({ success: false, errMsg: "Department not found." });
     }
 
-    // Create a member array with the manager included
     const membersWithDetails = department.members.map((member) => ({
       fullName: `${member.firstName} ${member.lastName}`,
       profileImage: member.profileImage,
@@ -89,7 +88,6 @@ export const getSingleDepartment = async (req, res) => {
       status: member.employmentStatus,
     }));
 
-    // Add the manager details to the members array
     if (department.manager) {
       membersWithDetails.push({
         fullName: `${department.manager.firstName} ${department.manager.lastName}`,
@@ -99,7 +97,6 @@ export const getSingleDepartment = async (req, res) => {
       });
     }
 
-    // Return the department with member details
     res.status(200).json({
       success: true,
       department: {

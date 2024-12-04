@@ -19,7 +19,6 @@ export const applyForLeave = async (req, res) => {
       });
   
       await USER.findByIdAndUpdate(userId, { $push: { leaves: newLeave._id } });
-      // Notify admins and super-admins
       const admins = await USER.find({ role: { $in: ["admin", "super-admin"] } });
       for (const admin of admins) {
           await sendLeaveRequestMail({
@@ -58,9 +57,7 @@ export const approveOrDeclineLeave = async (req, res) => {
   
       const employee = leave.appliedBy;
       const duration = calculateDuration(leave.startDate, leave.endDate);
-  
-      // Send email notification to the employee
-      await sendLeaveStatusUpdateMail({
+        await sendLeaveStatusUpdateMail({
         to: employee.email,
         employeeName: `${employee.firstName} ${employee.lastName}`,
         leaveType: leave.leaveType,
@@ -94,9 +91,7 @@ export const approveOrDeclineLeave = async (req, res) => {
   
       const employee = leave.appliedBy;
       const duration = calculateDuration(leave.startDate, leave.endDate);
-  
-      // Send approval email to the employee
-      await sendLeaveStatusUpdateMail({
+        await sendLeaveStatusUpdateMail({
         to: employee.email,
         employeeName: `${employee.firstName} ${employee.lastName}`,
         leaveType: leave.leaveType,
@@ -139,7 +134,7 @@ export const getAllLeaves = async (req, res) => {
       formattedLeaves.sort((a, b) => {
         if (a.status === "pending" && b.status !== "pending") return -1;
         if (a.status !== "pending" && b.status === "pending") return 1;
-        return 0; // Maintain original order if statuses are the same
+        return 0;
       });
         res.status(200).json({success:true,message:"all leaves",formattedLeaves});
 
@@ -175,9 +170,7 @@ export const getSingleLeave = async (req, res) => {
       if (!leave) {
         return res.status(404).json({ error: "Leave request not found" });
       }
-  
-      // Format response with duration included
-      const leaveDetails = {
+        const leaveDetails = {
         leaveId: leave._id,
         employee: leave.appliedBy
           ? {
