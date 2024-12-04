@@ -17,14 +17,9 @@ export const updateEmployee = async(req,res)=>{
 // all employees
 export const employees = async(req,res)=>{
     try {
-        // Set default values for page and limit
         const page = parseInt(req.query.page) || 1; 
         const limit = parseInt(req.query.limit) || 10;
-    
-        // Calculate the starting index of the page
         const startIndex = (page - 1) * limit;
-    
-        // Fetch users with pagination and populate the department field
         const users = await USER.find()
         .populate({
           path: 'department',
@@ -38,15 +33,12 @@ export const employees = async(req,res)=>{
           .select('-password -resetPasswordExpire -resetPasswordToken -createdAt -updatedAt')
           .skip(startIndex);
     
-        // Get total number of users for pagination
         const totalUsers = await USER.countDocuments();
     
-        // If no users are found
         if (!users || users.length === 0) {
           return res.status(404).json({ success: false, errMsg: "No users found." });
         }
     
-        // Return the paginated list of users with total count
         res.status(200).json({
           success: true,
           count: users.length,
@@ -60,18 +52,6 @@ export const employees = async(req,res)=>{
         console.error(error.message);
         res.status(500).json({ success: false, errMsg: "Server error." });
       }
-    // try {
-    //     const users = await USER.find().populate('department');
-    //     const userLenght = users.length;
-    //     res.status(200).json({
-    //         userLenght,
-    //         success: true,
-    //         data: users,
-    //       });
-    // } catch (error) {
-    //     console.error(error);
-    //     res.status(500).json({ success: false, errMsg: "Server error" });
-    // }
 }
 
 // search employees
@@ -79,12 +59,11 @@ export const searchUsers = async (req, res) => {
     const { query } = req.query; // Get the search query from query parameters
   
     try {
-      // Use a regular expression to perform a case-insensitive search on name or email
       const users = await USER.find({
         $or: [
-          { firstName: { $regex: query, $options: 'i' } }, // Search by first name
-          { lastName: { $regex: query, $options: 'i' } }, // Search by last name
-          { email: { $regex: query, $options: 'i' } },    // Search by email
+          { firstName: { $regex: query, $options: 'i' } }, 
+          { lastName: { $regex: query, $options: 'i' } },
+          { email: { $regex: query, $options: 'i' } }
         ]
       });
   
@@ -111,16 +90,11 @@ export const getEmployeeById = async (req, res) => {
     const { id } = req.params;
   
     try {
-      // Fetch the employee using the ID
       const employee = await USER.findById(id).populate('department');
-  
-      // If no employee is found
-      if (!employee) {
+        if (!employee) {
         return res.status(404).json({ success: false, errMsg: "Employee not found." });
       }
-  
-      // Return the employee data
-      res.status(200).json({
+        res.status(200).json({
         success: true,
         employee,
       });

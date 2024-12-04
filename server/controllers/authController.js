@@ -73,12 +73,6 @@ export const signup = async (req, res) => {
       res.status(400).json({ success: false, errMsg: "phone number already exists"});
       return;
     }
-    //
-    // if (!req.files || !req.files.profileImage) {
-    //   return res
-    //     .status(400)
-    //     .json({ success: false, errMsg: "Profile image is required" });
-    // }
     const imageToBeUploaded = req.files?.profileImage?.tempFilePath || req.body.profileImage
     if(!imageToBeUploaded){
       return res.status(400).json({errMsg: 'image has to be uploaded', success: false})
@@ -93,8 +87,6 @@ export const signup = async (req, res) => {
     );
 
     req.body.profileImage = result.secure_url;
-
-    // fs.unlinkSync(req.files.profileImage.tempFilePath);
        const dept = await DEPARTMENT.findOne({name: department})
   console.log(dept);
     if (!dept) {
@@ -103,19 +95,8 @@ export const signup = async (req, res) => {
      
 
      const newUser = await USER.create({ ...req.body, department: dept._id });
-
-     // Find the department and add the new employee to the members array
-  
-  
-     
-    //  const dept = await DEPARTMENT.findOne({name: department})
-     
-   
- 
-     // Save the department with the new member
-   dept.members.push(newUser._id); // Add new user's ID to the members array
+   dept.members.push(newUser._id);
       await dept.save();
-    // Send a welcome email (optional)
      const clientUrl = process.env.CLIENT_URL;
  
      try {
@@ -128,7 +109,6 @@ export const signup = async (req, res) => {
        console.error("Error sending welcome email", emailError);
      }
  
-     //Return the success response
      res.status(201).json({
        success: true,
        message: "Employee has been successfully added, and the department has been updated.",
@@ -150,13 +130,11 @@ export const signIn = async (req, res) => {
     return;
   }
   try {
-    // finding a registered email address
     const user = await USER.findOne({ email });
     if (!user) {
       res.status(404).json({ success: false, errMsg: "user not found" });
       return;
     }
-    // comparing password and validating password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       res
@@ -164,10 +142,7 @@ export const signIn = async (req, res) => {
         .json({ success: false, errMsg: "Email or Password is Incorrect" });
       return;
     }
-    // generating token
-
     const token = await user.generateToken();
-    // console.log(token);
     if (token) {
       res.status(201).json({
         success: true,
@@ -235,8 +210,6 @@ export const forgotPassword = async(req,res)=>{
     const user = await USER.findOne({
       resetPasswordToken,
       resetPasswordExpire:{$gt:Date.now()}
-      // resetPasswordExpire:{$gt:Date('2024-12-20')}
-
     })
     if(!user){
       return res.status(400).json({status:false,message:"invalid Reset Token"})

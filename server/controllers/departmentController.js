@@ -18,17 +18,7 @@ export const createDepartment = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-// all depts
-// export const getDepartments = async (req, res) => {
-//   try {
-//     const departments = await DEPARTMENT.find({}).sort({ createdAt: -1 });
-//     res.status(200).json({ success: true, departments });
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ success: false, message: "Error fetching departments" });
-//   }
-// };
+
 export const getDepartments = async (req, res) => {
   try {
     const departments = await DEPARTMENT.find({})
@@ -128,19 +118,15 @@ export const searchDept = async (req, res) => {
   const { query } = req.query;
 
   try {
-    // Use a regular expression to perform a case-insensitive search on dept name
     const dept = await DEPARTMENT.find({
       $or: [
-        { name: { $regex: query, $options: "i" } }, // Search by dept name
+        { name: { $regex: query, $options: "i" } },
       ],
     });
 
-    // If no users are found
     if (!dept || dept.length === 0) {
       return res.status(404).json({ success: false, errMsg: "No dept found." });
     }
-
-    // Return the list of found users
     res.status(200).json({
       success: true,
       count: dept.length,

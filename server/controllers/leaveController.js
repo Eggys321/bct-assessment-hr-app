@@ -114,43 +114,6 @@ export const approveOrDeclineLeave = async (req, res) => {
   };
 
 
-//   decline
-export const declineLeave = async (req, res) => {
-    const { leaveId } = req.params;
-    const { userId } = req.user;
-  
-    try {
-      // Update the leave request status to declined
-      const leave = await LEAVE.findByIdAndUpdate(
-        leaveId,
-        { status: "declined", approvedBy: userId },
-        { new: true }
-      ).populate("appliedBy", "email firstName lastName");
-  
-      if (!leave) {
-        return res.status(404).json({ error: "Leave request not found." });
-      }
-  
-      const employee = leave.appliedBy;
-      const duration = calculateDuration(leave.startDate, leave.endDate);
-  
-      // Send decline email to the employee
-      await sendLeaveStatusUpdateMail({
-        to: employee.email,
-        employeeName: `${employee.firstName} ${employee.lastName}`,
-        leaveType: leave.leaveType,
-        startDate: leave.startDate,
-        endDate: leave.endDate,
-        duration,
-        status: "declined",
-      });
-  
-      res.status(200).json({success:true, message: `Leave request declined and notification sent to ${employee.email}.` });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
-
 
 
 export const getAllLeaves = async (req, res) => {
