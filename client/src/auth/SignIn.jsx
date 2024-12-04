@@ -35,7 +35,7 @@ const SignIn = () => {
   async function handleSignIn(data) {
     setIsClicked(true)
     try {
-      const req = await fetch("https://mern-hr-app.onrender.com/api/auth/signin",{
+      const req = await fetch("https://bct-assessment-hr-app.onrender.com/api/auth/signin",{
         method:"POST",
         headers:{
           "Content-Type":"application/json"

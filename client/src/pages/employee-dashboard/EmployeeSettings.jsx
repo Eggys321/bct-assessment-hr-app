@@ -10,7 +10,7 @@ const EmployeeSettings = () => {
   useEffect(() => {
     async function userProfile() {
       try {
-        const req = await axios.get("https://mern-hr-app.onrender.com/api/employee/user/profile", {
+        const req = await axios.get("https://bct-assessment-hr-app.onrender.com/api/employee/user/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

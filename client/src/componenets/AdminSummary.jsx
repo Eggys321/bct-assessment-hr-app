@@ -12,7 +12,7 @@ const AdminSummary = () => {
 
  const getCounts = async ()=>{
   try {
-    const req = await axios.get("https://mern-hr-app.onrender.com/api/count",{
+    const req = await axios.get("https://bct-assessment-hr-app.onrender.com/api/count",{
       headers:{
         Authorization: `Bearer ${token}`,
       }

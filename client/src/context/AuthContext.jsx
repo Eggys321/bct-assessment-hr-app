@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const getEmployeeById = async (id) => {
     try {
       setIsLoading(true);
-      const req = await axios.get(`https://mern-hr-app.onrender.com/api/employee/${id}`, {
+      const req = await axios.get(`https://bct-assessment-hr-app.onrender.com/api/employee/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   const getCounts = async () => {
     try {
       const req = await axios.get(
-        "https://mern-hr-app.onrender.com/api/count",
+        "https://bct-assessment-hr-app.onrender.com/api/count",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   const createLeave = async (leaveData) => {
     try {
       
-      const req = await fetch("https://mern-hr-app.onrender.com/api/leave/apply", {
+      const req = await fetch("https://bct-assessment-hr-app.onrender.com/api/leave/apply", {
         method:"POST",
         headers: {
           "Content-Type":"application/json",
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
 // employee History
  async function getLeaveHistory (){
     try {
-      const req = await axios.get("https://mern-hr-app.onrender.com/api/leave/employee/leaves",{
+      const req = await axios.get("https://bct-assessment-hr-app.onrender.com/api/leave/employee/leaves",{
         headers:{
           Authorization:`Bearer ${token}`
         }
@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
       try {
         if (token) {
           const request = await axios.get(
-            "https://mern-hr-app.onrender.com/api/auth/verify",
+            "https://bct-assessment-hr-app.onrender.com/api/auth/verify",
             {
               headers: {
                 Authorization: `Bearer ${token}`,

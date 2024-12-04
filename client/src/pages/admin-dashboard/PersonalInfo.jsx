@@ -26,11 +26,13 @@ const PersonalInfo = () => {
     resolver: yupResolver(personalInformation),
   });
   const onSubmit = (data) => {
+    // Check if a file was selected
     if (data.profileImage && data.profileImage.length > 0) {
       const file = data.profileImage[0]; 
       const reader = new FileReader();
   
       reader.onloadend = () => {
+        // Convert the file to base64
         const base64Image = reader.result; 
   
         const formDataWithImage = {

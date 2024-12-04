@@ -6,7 +6,6 @@ import "../styles/NewTeamModal.css";
 import axios from "axios";
 import toast, { LoaderIcon } from "react-hot-toast";
 import { CiCircleRemove } from "react-icons/ci";
-// import { Loader } from "../utils/Loader";
 
 
 const NewTaskModal = (props) => {
@@ -26,7 +25,7 @@ const NewTaskModal = (props) => {
       const fetchSuggestions = async () => {
         try {
           const response = await axios.get(
-            `https://mern-hr-app.onrender.com/api/employee/users/search?query=${searchQuery}`,
+            `https://bct-assessment-hr-app.onrender.com/api/employee/users/search?query=${searchQuery}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -35,7 +34,6 @@ const NewTaskModal = (props) => {
           );
           setSuggestions(response.data.users);
         } catch (error) {
-          // console.error("Error fetching user suggestions:", error);
         }
       };
       fetchSuggestions();
@@ -72,7 +70,7 @@ const NewTaskModal = (props) => {
     try {
       setIsSubmitting(true)
       const req = await axios.post(
-        "https://mern-hr-app.onrender.com/api/task/tasks",
+        "https://bct-assessment-hr-app.onrender.com/api/task/tasks",
         newTask,
         {
           headers: {

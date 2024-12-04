@@ -13,7 +13,7 @@ const EditProfileModal = (props) => {
     const updateProfile = async(e,employeeId)=>{
         e.preventDefault()
         try {
-            const req = await axios.patch(`https://mern-hr-app.onrender.com/api/employee/${employeeId}`,{
+            const req = await axios.patch(`https://bct-assessment-hr-app.onrender.com/api/employee/${employeeId}`,{
                 firstName,
                 lastName,maritalStatus
             },{
